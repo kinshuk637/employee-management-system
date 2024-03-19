@@ -39,9 +39,12 @@ export class EmployeeListComponent implements OnInit{
   }
 
   deleteEmployee(id: number){
-    this.employeeService.deleteEmployee(id).subscribe(data => {
-      console.log(data);
-      this.getEmployees();
-    })
+    const isConfirmed = window.confirm('Are you sure you want to delete this record?');
+    if (isConfirmed) {
+      this.employeeService.deleteEmployee(id).subscribe(data => {
+        console.log(data);
+        this.getEmployees();
+      });
+    }
   }
 }
